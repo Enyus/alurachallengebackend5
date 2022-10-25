@@ -16,6 +16,6 @@ model Video {
   descricao String
   url       String  
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  deletedAt DateTime
+  updatedAt DateTime?
+  deletedAt DateTime?
 }
