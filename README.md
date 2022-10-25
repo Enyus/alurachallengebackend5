@@ -20,6 +20,7 @@ O projeto tem o objetivo de construir um back-end para o front do site Aluraflix
 
 ## Para rodar o projeto
 - Faça o clone do repositório com `git clone https://github.com/Enyus/alurachallengefrontend5.git`
+- Faça a instalação das dependências com `npm install`
 - Faça a migration do prisma com `npx prisma migrate dev --name videos_table`
 - Faça o seed dos primeiros vídeos do banco de dados com `npx prisma db seed` (opcional)
 - Inicie o servidor com `npm run dev`
