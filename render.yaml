@@ -5,6 +5,7 @@ services:
     plan: free
     buildCommand:
       npm init -y &&
+      npm install &&
       npx prisma generate &&
       npm run build &&
       npx prisma migrate deploy &&
