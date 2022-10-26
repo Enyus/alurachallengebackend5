@@ -24,3 +24,4 @@ O projeto tem o objetivo de construir um back-end para o front do site Aluraflix
 - Faça a migration do prisma com `npx prisma migrate dev --name videos_table`
 - Faça o seed dos primeiros vídeos do banco de dados com `npx prisma db seed` (opcional)
 - Inicie o servidor com `npm run dev`
+- Para ver uma representação gráfica do banco dedados, abra outro prompt de comando e use `npx prisma studio` (opcional)

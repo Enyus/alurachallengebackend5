@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// Para rodar o Prisma Studio e ver as tabelas, rodar no console o comando 'npx prisma studio';
+
 generator client {
   provider = "prisma-client-js"
 }

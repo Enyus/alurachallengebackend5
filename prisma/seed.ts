@@ -1,3 +1,5 @@
+// Para rodar o seed, utilize o seguind comando no console: 'npx prisma db seed'
+
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
