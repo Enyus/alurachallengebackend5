@@ -4,7 +4,7 @@ services:
     env: node
     plan: free
     buildCommand:
-      npm --frozen-lockfile --prod=false &&
+      npm init -y &&
       npm prisma generate &&
       npm build &&
       npx prisma migrate deploy &&
