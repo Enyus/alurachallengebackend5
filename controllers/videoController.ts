@@ -3,17 +3,22 @@ import validation from "../assets/validation";
 // Uso de req, res e next com typescript:
 // import { Request, Response, NextFunction } from 'express';
 import { Request, Response, NextFunction } from "express";
+import { networkInterfaces } from "os";
 
 interface Data {
-    titulo?: string;
-    descricao?: string;
-    url?: string;
+  titulo?: string;
+  descricao?: string;
+  url?: string;
 }
 
 const videoController = {
   list: async (req: Request, res: Response) => {
     try {
-      const videos = await prisma.video.findMany();
+      const videos = await prisma.video.findMany({
+        where: {
+          deletedAt: null,
+        },
+      });
 
       return res.status(202).json({ videos });
     } catch (error) {
@@ -76,13 +81,19 @@ const videoController = {
     const { id } = req.params;
     const { titulo, descricao, url } = req.body;
 
-    let dadosAlterados:Data = {};
+    let dadosAlterados: Data = {};
 
-    if (validation(titulo)) { dadosAlterados.titulo = titulo; }
+    if (validation(titulo)) {
+      dadosAlterados.titulo = titulo;
+    }
 
-    if (validation(descricao)) { dadosAlterados.descricao = descricao; }
+    if (validation(descricao)) {
+      dadosAlterados.descricao = descricao;
+    }
 
-    if (validation(url)) { dadosAlterados.url = url; }
+    if (validation(url)) {
+      dadosAlterados.url = url;
+    }
 
     if (!(validation(titulo) || validation(descricao) || validation(url))) {
       return res
@@ -98,10 +109,39 @@ const videoController = {
         data: dadosAlterados,
       });
 
-    //   console.log(videoUpdated);
+      //   console.log(videoUpdated);
 
       return res.status(202).json(videoUpdated);
+    } catch (error) {
+      console.log(error);
+      return res.status(404).send("Ocorreu um problema.");
+    }
+  },
 
+  deleteVideo: async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+      const videoSelected = await prisma.video.findUnique({
+        where: {
+          id: Number(id),
+        },
+      });
+
+      if (videoSelected == null) {
+        return res.status(404).send("Vídeo não cadastrado.");
+      }
+      
+      const videoDeleted = await prisma.video.update({
+        where: {
+          id: Number(id),
+        },
+        data: {
+          deletedAt: new Date(),
+        },
+      });
+
+      return res.status(202).send("Vídeo deletado com sucesso.");
     } catch (error) {
       console.log(error);
       return res.status(404).send("Ocorreu um problema.");
