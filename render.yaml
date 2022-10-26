@@ -4,11 +4,11 @@ services:
     env: node
     plan: free
     buildCommand:
-      yarn --frozen-lockfile --prod=false &&
-      yarn prisma generate &&
-      yarn prisma db seed &&
-      yarn build &&
-      yarn prisma migrate deploy
+      npm --frozen-lockfile --prod=false &&
+      npm prisma generate &&
+      npm build &&
+      npx prisma migrate deploy &&
+      npx prisma db seed
     startCommand: npm run dev
     envVars:
       - key: NODE_ENV
