@@ -10,7 +10,7 @@
     "start": "node ./build/index.js"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "node ./build/prisma/seed.js"
   },
   "repository": {
     "type": "git",
