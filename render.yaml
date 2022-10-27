@@ -6,7 +6,7 @@ services:
     buildCommand:
       yarn install &&
       yarn prisma generate &&
-      yarn run build &&
+      yarn build &&
       yarn prisma migrate deploy &&
       yarn prisma db seed
     startCommand: yarn run dev
