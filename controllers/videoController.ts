@@ -23,7 +23,7 @@ const videoController = {
       return res.status(202).json({ videos });
     } catch (error) {
       console.log(error);
-      return res.status(404).send("Ocorreu um problema.");
+      return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
     }
   },
 
@@ -46,7 +46,7 @@ const videoController = {
       return res.status(202).json(video);
     } catch (error) {
       console.log(error);
-      return res.status(404).send("Ocorreu um problema.");
+      return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
     }
   },
 
@@ -73,7 +73,7 @@ const videoController = {
       return res.status(202).json(videoAdd);
     } catch (error) {
       console.log(error);
-      return res.status(404).send("Ocorreu um problema.");
+      return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
     }
   },
 
@@ -114,7 +114,7 @@ const videoController = {
       return res.status(202).json(videoUpdated);
     } catch (error) {
       console.log(error);
-      return res.status(404).send("Ocorreu um problema.");
+      return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
     }
   },
 
@@ -144,7 +144,7 @@ const videoController = {
       return res.status(202).send("Vídeo deletado com sucesso.");
     } catch (error) {
       console.log(error);
-      return res.status(404).send("Ocorreu um problema.");
+      return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
     }
   },
 };
