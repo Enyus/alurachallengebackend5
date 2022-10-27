@@ -7,10 +7,10 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.ts",
-    "start": "node ./build/index.js"
+    "start": "node index.js"
   },
   "prisma": {
-    "seed": "node ./build/prisma/seed.js"
+    "seed": "node prisma/seed.js"
   },
   "repository": {
     "type": "git",
