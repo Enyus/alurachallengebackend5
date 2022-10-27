@@ -4,13 +4,12 @@ services:
     env: node
     plan: free
     buildCommand:
-      npm init -y &&
-      npm install &&
-      npx prisma generate &&
-      npm run build &&
-      npx prisma migrate deploy &&
-      npx prisma db seed
-    startCommand: npm run dev
+      yarn install &&
+      yarn prisma generate &&
+      yarn run build &&
+      yarn prisma migrate deploy &&
+      yarn prisma db seed
+    startCommand: yarn run dev
     envVars:
       - key: NODE_ENV
         value: production
