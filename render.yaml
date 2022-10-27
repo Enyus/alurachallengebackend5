@@ -6,10 +6,9 @@ services:
     buildCommand:
       yarn install &&
       yarn prisma generate &&
-      yarn build &&
       yarn prisma migrate deploy &&
       yarn prisma db seed
-    startCommand: yarn run dev
+    startCommand: yarn start
     envVars:
       - key: NODE_ENV
         value: production
