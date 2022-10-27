@@ -73,7 +73,7 @@ const videoController = {
       return res.status(202).json(videoAdd);
     } catch (error) {
       console.log(error);
-      return res.status(404).send("Ocorreu um problema.");
+      return res.status(404).send(`Ocorreu um problema. ${error}`);
     }
   },
 

@@ -121,7 +121,7 @@ var videoController = {
                 case 3:
                     error_3 = _b.sent();
                     console.log(error_3);
-                    return [2 /*return*/, res.status(404).send("Ocorreu um problema.")];
+                    return [2 /*return*/, res.status(404).send("Ocorreu um problema. ".concat(error_3))];
                 case 4: return [2 /*return*/];
             }
         });
