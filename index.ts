@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(
     /* {
-        origin: "http://www.rocketseat.com.br"
+        origin: "http://www."
         Só aceita requisições deste front-end
     }
     */
