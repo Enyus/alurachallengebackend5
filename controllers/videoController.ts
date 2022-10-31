@@ -3,7 +3,6 @@ import validation from "../assets/validation";
 // Uso de req, res e next com typescript:
 // import { Request, Response, NextFunction } from 'express';
 import { Request, Response, NextFunction } from "express";
-import { networkInterfaces } from "os";
 
 interface Data {
   titulo?: string;
@@ -18,6 +17,9 @@ const videoController = {
         where: {
           deletedAt: null,
         },
+        include: {
+          categoria: true
+        }
       });
 
       return res.status(202).json({ videos });
@@ -35,6 +37,9 @@ const videoController = {
         where: {
           id: Number(id),
         },
+        include: {
+          categoria: true
+        }
       });
 
       // console.log(video);

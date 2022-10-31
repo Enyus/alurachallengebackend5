@@ -30,5 +30,5 @@ model Video {
   deletedAt   DateTime?
   categoriaId Int       @default(1)
 
-  catetoria Categoria @relation(fields: [categoriaId], references: [id])
+  categoria Categoria @relation(fields: [categoriaId], references: [id])
 }
