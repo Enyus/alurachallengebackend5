@@ -1,10 +1,36 @@
 // Para rodar o seed, utilize o seguind comando no console: 'npx prisma db seed'
 
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../assets/prisma";
 
 async function main() {
+  const categoria1 = await prisma.categoria.upsert({
+    where: {id:1},
+    update: {
+      id: 1,
+      titulo: "livre",
+      cor: "white"
+    },
+    create: {
+      id: 1,
+      titulo: "livre",
+      cor: "white"
+    }
+  })
+
+  const categoria2 = await prisma.categoria.upsert({
+    where: {id:2},
+    update: {
+      id: 2,
+      titulo: "Front End",
+      cor: "blue"
+    },
+    create: {
+      id: 2,
+      titulo: "Front End",
+      cor: "blue"
+    }
+  })
+
   const video1 = await prisma.video.upsert({
     where: { id: 1 },
     update: {
@@ -15,6 +41,7 @@ async function main() {
       createdAt: new Date("2022-10-25T11:09:00"),
       updatedAt: null,
       deletedAt: null,
+      categoriaId: 2,
     },
     create: {
       id: 1,
@@ -24,6 +51,7 @@ async function main() {
       createdAt: new Date("2022-10-25T11:09:00"),
       updatedAt: null,
       deletedAt: null,
+      categoriaId: 2,
     },
   });
 
@@ -37,6 +65,7 @@ async function main() {
       createdAt: new Date("2022-10-25T11:10:00"),
       updatedAt: null,
       deletedAt: null,
+      categoriaId: 1,
     },
     create: {
       id: 2,
@@ -46,6 +75,7 @@ async function main() {
       createdAt: new Date("2022-10-25T11:10:00"),
       updatedAt: null,
       deletedAt: null,
+      categoriaId: 1,
     },
   });
 
@@ -59,6 +89,7 @@ async function main() {
       createdAt: new Date("2022-10-25T11:11:00"),
       updatedAt: null,
       deletedAt: null,
+      categoriaId: 1,
     },
     create: {
       id: 3,
@@ -68,10 +99,11 @@ async function main() {
       createdAt: new Date("2022-10-25T11:11:00"),
       updatedAt: null,
       deletedAt: null,
+      categoriaId: 1,
     },
   });
 
-  console.log({ video1, video2, video3 });
+  console.log({ categoria1, categoria2, video1, video2, video3 });
 }
 
 main()

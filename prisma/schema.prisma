@@ -12,12 +12,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Categoria {
+  id     Int    @id @default(autoincrement())
+  titulo String
+  cor    String
+
+  video Video[]
+}
+
 model Video {
-  id        Int    @id @default(autoincrement())
-  titulo    String
-  descricao String
-  url       String  
-  createdAt DateTime @default(now())
-  updatedAt DateTime?
-  deletedAt DateTime?
+  id          Int       @id @default(autoincrement())
+  titulo      String
+  descricao   String
+  url         String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
+  deletedAt   DateTime?
+  categoriaId Int       @default(1)
+
+  catetoria Categoria @relation(fields: [categoriaId], references: [id])
 }
