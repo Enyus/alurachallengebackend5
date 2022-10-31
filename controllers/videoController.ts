@@ -18,8 +18,8 @@ const videoController = {
           deletedAt: null,
         },
         include: {
-          categoria: true
-        }
+          categoria: true,
+        },
       });
 
       return res.status(202).json({ videos });
@@ -38,8 +38,8 @@ const videoController = {
           id: Number(id),
         },
         include: {
-          categoria: true
-        }
+          categoria: true,
+        },
       });
 
       // console.log(video);
@@ -136,7 +136,7 @@ const videoController = {
       if (videoSelected == null) {
         return res.status(404).send("Vídeo não cadastrado.");
       }
-      
+
       const videoDeleted = await prisma.video.update({
         where: {
           id: Number(id),
