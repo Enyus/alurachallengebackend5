@@ -109,6 +109,34 @@ const categoriaController = {
         return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
       }
     },
+
+    deleteCategoria: async (req: Request, res: Response) => {
+      const { id } = req.params;
+  
+      try {
+        const categoriaSelected = await prisma.categoria.findUnique({
+          where: {
+            id: Number(id),
+          },
+        });
+  
+        if (categoriaSelected == null) {
+          return res.status(404).send("Categoria não cadastrada.");
+        }
+  
+        const categoriaDeleted = await prisma.categoria.delete({
+          where: {
+            id: Number(id),
+          },
+        });
+  
+        return res.status(204);
+
+      } catch (error) {
+        console.log(error);
+        return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
+      }
+    },
       
 }
 
