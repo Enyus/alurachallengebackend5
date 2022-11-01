@@ -8,5 +8,6 @@ router.get('/:id', categoriaController.selectCategoria);
 router.post('/', categoriaController.addCategoria);
 router.put('/:id', categoriaController.updateCategoria);
 router.delete('/:id', categoriaController.deleteCategoria);
+router.get('/:id/videos', categoriaController.selectVideosByCategoria);
 
 export default router;

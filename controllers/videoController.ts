@@ -146,7 +146,7 @@ const videoController = {
         },
       });
 
-      return res.status(202).send("Vídeo deletado com sucesso.");
+      return res.status(204).send("Vídeo deletado com sucesso.");
     } catch (error) {
       console.log(error);
       return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);

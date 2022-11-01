@@ -137,6 +137,31 @@ const categoriaController = {
         return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
       }
     },
+
+    selectVideosByCategoria:async (req:Request, res:Response) => {
+      const {id} = req.params;
+
+      try {
+        const videosByCategoria = await prisma.video.findMany({
+          where: {
+            categoriaId: Number(id),
+          },
+          include:{
+            categoria: true,
+          },
+        })
+
+        if (videosByCategoria.length == 0) {
+          return res.status(404).send("Não existem vídeos cadastrados nesta categoria.")
+        }
+
+        return res.status(202).json(videosByCategoria);
+
+      } catch (error) {
+        console.log(error);
+        return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
+      }
+    },
       
 }
 
