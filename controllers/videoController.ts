@@ -57,6 +57,13 @@ const videoController = {
 
   addVideo: async (req: Request, res: Response) => {
     const { titulo, descricao, url } = req.body;
+    let { categoriaId } = req.body;
+
+    if(!validation(categoriaId)) {
+      categoriaId = 1;
+    } else {
+      categoriaId = Number(categoriaId);
+    }
 
     if (!(validation(titulo) && validation(descricao) && validation(url))) {
       return res
@@ -70,12 +77,12 @@ const videoController = {
           titulo: titulo,
           descricao: descricao,
           url: url,
+          categoriaId: categoriaId
         },
       });
 
-      // console.log(videoAdd);
-
       return res.status(202).json(videoAdd);
+
     } catch (error) {
       console.log(error);
       return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
