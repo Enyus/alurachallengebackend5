@@ -8,6 +8,7 @@ interface Data {
   titulo?: string;
   descricao?: string;
   url?: string;
+  categoriaId?: number;
 }
 
 const videoController = {
@@ -92,6 +93,7 @@ const videoController = {
   updateVideo: async (req: Request, res: Response) => {
     const { id } = req.params;
     const { titulo, descricao, url } = req.body;
+    let { categoriaId } = req.body;
 
     let dadosAlterados: Data = {};
 
@@ -111,6 +113,10 @@ const videoController = {
       return res
         .status(412)
         .send("Os campos de alteração não podem ser vazios ou indefinidos.");
+    }
+
+    if(validation(categoriaId)) {
+      dadosAlterados.categoriaId = Number(categoriaId);
     }
 
     try {
