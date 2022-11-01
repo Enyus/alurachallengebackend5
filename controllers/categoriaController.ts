@@ -1,5 +1,11 @@
 import prisma from "../assets/prisma";
+import validation from "../assets/validation";
 import { Request, Response, NextFunction } from "express";
+
+interface Data {
+  titulo?: string;
+  cor?: string;
+}
 
 const categoriaController = {
     list: async (req: Request, res: Response) => {
@@ -12,6 +18,98 @@ const categoriaController = {
         return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
       }
     },
+
+    selectCategoria: async (req: Request, res: Response) => {
+      const {id} = req.params;
+
+      try {
+        const categoria = await prisma.categoria.findUnique({
+          where: {
+            id: Number(id),
+          }
+        })
+
+        if (categoria == null) {
+          return res.status(404).send("Categoria não cadastrada.");
+        }
+  
+        return res.status(202).json(categoria);
+
+      } catch (error) {
+        console.log(error);
+        return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
+      }
+    },
+    
+    addCategoria: async (req:Request, res:Response) => {
+      const {titulo, cor} = req.body;
+
+      console.log(cor)
+
+      if (!validation(titulo)) {
+        return res
+          .status(412)
+          .send("O campo de título não pode ser vazio.");
+      }
+      
+      if (!validation(cor)) {
+        return res
+          .status(412)
+          .send("O campo cor não pode ser vazio.");
+      }
+
+      try {
+        const categoriaAdded = await prisma.categoria.create({
+          data: {
+            titulo: titulo,
+            cor: cor,
+          }
+        })
+
+        return res.status(202).json(categoriaAdded);
+
+      } catch (error) {
+        console.log(error);
+        return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
+      }
+    },
+
+    updateCategoria: async (req: Request, res: Response) => {
+      const { id } = req.params;
+      const { titulo, cor } = req.body;
+  
+      let dadosAlterados: Data = {};
+  
+      if (validation(titulo)) {
+        dadosAlterados.titulo = titulo;
+      }
+  
+      if (validation(cor)) {
+        dadosAlterados.cor = cor;
+      }
+  
+      if (!(validation(titulo) && validation(cor))) {
+        return res
+          .status(412)
+          .send("Os campos de alteração não podem ser vazios ou indefinidos.");
+      }
+  
+      try {
+        const categoriaUpdated = await prisma.categoria.update({
+          where: {
+            id: Number(id),
+          },
+          data: dadosAlterados,
+        });
+  
+        return res.status(202).json(categoriaUpdated);
+
+      } catch (error) {
+        console.log(error);
+        return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
+      }
+    },
+      
 }
 
 export default categoriaController;
