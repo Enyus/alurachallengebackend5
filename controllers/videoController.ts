@@ -1,8 +1,10 @@
 import prisma from "../assets/prisma";
 import validation from "../assets/validation";
+import MiniSearch from "minisearch";
 // Uso de req, res e next com typescript:
 // import { Request, Response, NextFunction } from 'express';
 import { Request, Response, NextFunction } from "express";
+import { resourceLimits } from "worker_threads";
 
 interface Data {
   titulo?: string;
@@ -13,6 +15,8 @@ interface Data {
 
 const videoController = {
   list: async (req: Request, res: Response) => {
+    const { search } = req.query;
+
     try {
       const videos = await prisma.video.findMany({
         where: {
@@ -22,6 +26,30 @@ const videoController = {
           categoria: true,
         },
       });
+
+      if (search) {
+
+        let busca = new MiniSearch({
+          fields: ["titulo", "descricao"],
+          storeFields: ['id'],
+          searchOptions: {
+            fuzzy: 0.2,
+            prefix: true
+          }
+        });
+
+        busca.addAll(videos);
+
+        let results = busca.search(`${search}`).map( result => result.id);
+
+        let resultadoBusca = videos.filter( video => results.some( result => video.id == result) )
+
+        if (resultadoBusca.length == 0) {
+          return res.status(404).send("Nenhum vídeo foi encontrado com estes parâmetros de busca.")
+        }
+
+        return res.status(202).json(resultadoBusca);
+      }
 
       return res.status(202).json({ videos });
     } catch (error) {
