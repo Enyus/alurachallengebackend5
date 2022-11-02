@@ -40,7 +40,40 @@ O projeto tem o objetivo de construir um back-end para o front do site Aluraflix
     </tr>
 </table>
 
-- Semana 2:
+- Semana 2: Criar nova tabela para categorias com relação de categoria 1:n vídeos; fazer rotas CRUD para as categorias; criar rota para listar vídeos por categoria; e criar rota com parâmetros de busca para os vídeos. ✅
+
+<table>
+    <tr>
+        <th>Listar todas as Categorias</th>
+        <th>Listar uma categoria</th>
+    </tr>
+    <tr>
+        <td><img src="https://media.giphy.com/media/Bcm9ymed9Ifrf3EqtW/giphy.gif" alt="listar todas as categoria"></td>
+        <td><img src="https://media.giphy.com/media/71m2L0VKhG200AGSs4/giphy.gif" alt="listar uma categoria"></td>
+    </tr>
+    <tr>
+        <th>Adicionar uma categoria</th>
+        <th>Alterar uma categoria</th>
+    </tr>
+    <tr>
+        <td><img src="https://media.giphy.com/media/CNkUsSuKNSH11E8DCF/giphy.gif" alt="adicionar uma categoria"></td>
+        <td><img src="https://media.giphy.com/media/uMtOlu1JhBdn3E3pr2/giphy.gif" alt="alterar uma categoria"></td>
+    </tr>
+    <tr>
+        <th>Deletar uma categoria</th>
+        <th>Listar vídeos por categoria</th>
+    </tr>
+    <tr>
+        <td><img src="https://media.giphy.com/media/kyw4BGcovUpKsr2bqO/giphy.gif" alt="deletar uma categoria"></td>
+        <td><img src="https://media.giphy.com/media/I3hRYTRvQBjKzYIT7j/giphy.gif" alt="listar videos por categoria"></td>
+    </tr>
+    <tr>
+        <th>Procurar um vídeo</th>
+    </tr>
+    <tr>
+        <td><img src="https://media.giphy.com/media/9SLWi7oer4ksCI2mn8/giphy.gif" alt="procurar um vídeo"></td>
+    </tr>
+</table>
 
 - Semanas 3 e 4:
 
