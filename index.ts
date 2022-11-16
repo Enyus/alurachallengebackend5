@@ -12,8 +12,9 @@ app.use(cors(
     }
     */
 ))
+app.set('view engine', 'ejs');
 
-// app.use('/', (req, res) => {res.render()})
+app.use('/', (req, res) => {res.render('home')})
 app.use('/videos', videoRouter);
 app.use('/categorias', categoriaRouter);
 
