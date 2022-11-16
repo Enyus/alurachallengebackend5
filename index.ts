@@ -13,6 +13,7 @@ app.use(cors(
     */
 ))
 
+// app.use('/', (req, res) => {res.render()})
 app.use('/videos', videoRouter);
 app.use('/categorias', categoriaRouter);
 

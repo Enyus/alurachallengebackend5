@@ -1,10 +1,8 @@
 import prisma from "../assets/prisma";
 import validation from "../assets/validation";
-import MiniSearch from "minisearch";
 // Uso de req, res e next com typescript:
 // import { Request, Response, NextFunction } from 'express';
 import { Request, Response, NextFunction } from "express";
-import { resourceLimits } from "worker_threads";
 
 interface Data {
   titulo?: string;
@@ -15,41 +13,37 @@ interface Data {
 
 const videoController = {
   list: async (req: Request, res: Response) => {
-    const { search } = req.query;
+    const { search, page } = req.query;
+
+    let paginaMostrada = 1;
+
+    if (page) {
+      paginaMostrada = Number(page);
+    }
+
+    let busca: string = "";
+
+    if (search) {
+      busca = search.toString();
+    }
+
+    console.log(busca);
 
     try {
       const videos = await prisma.video.findMany({
         where: {
+          titulo: {
+            contains: busca,
+            mode: 'insensitive',
+          },
           deletedAt: null,
         },
         include: {
           categoria: true,
         },
+        take: 5,
+        skip: 5 * (paginaMostrada - 1),
       });
-
-      if (search) {
-
-        let busca = new MiniSearch({
-          fields: ["titulo", "descricao"],
-          storeFields: ['id'],
-          searchOptions: {
-            fuzzy: 0.2,
-            prefix: true
-          }
-        });
-
-        busca.addAll(videos);
-
-        let results = busca.search(`${search}`).map( result => result.id);
-
-        let resultadoBusca = videos.filter( video => results.some( result => video.id == result) )
-
-        if (resultadoBusca.length == 0) {
-          return res.status(404).send("Nenhum vídeo foi encontrado com estes parâmetros de busca.")
-        }
-
-        return res.status(202).json(resultadoBusca);
-      }
 
       return res.status(202).json({ videos });
     } catch (error) {
@@ -88,7 +82,7 @@ const videoController = {
     const { titulo, descricao, url } = req.body;
     let { categoriaId } = req.body;
 
-    if(!validation(categoriaId)) {
+    if (!validation(categoriaId)) {
       categoriaId = 1;
     } else {
       categoriaId = Number(categoriaId);
@@ -106,12 +100,11 @@ const videoController = {
           titulo: titulo,
           descricao: descricao,
           url: url,
-          categoriaId: categoriaId
+          categoriaId: categoriaId,
         },
       });
 
       return res.status(202).json(videoAdd);
-
     } catch (error) {
       console.log(error);
       return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
@@ -143,7 +136,7 @@ const videoController = {
         .send("Os campos de alteração não podem ser vazios ou indefinidos.");
     }
 
-    if(validation(categoriaId)) {
+    if (validation(categoriaId)) {
       dadosAlterados.categoriaId = Number(categoriaId);
     }
 
