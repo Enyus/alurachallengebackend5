@@ -14,7 +14,9 @@ Este repositório guarda a minha versão do back-end do site Alura Flix, desenvo
 ## Detalhes do Projeto
 O projeto tem o objetivo de construir um back-end para o front do site Aluraflix. Resolvi utilizar as tecnologias NodeJs, Express, Prisma, SQLite e o Hopscotch como ambiente de testes.
 
-- Semana 1: Iniciar o banco de dados e criar requisições CRUD básicas.✅
+### Semana 1 ✅
+Iniciar o banco de dados e criar requisições CRUD básicas.
+
 <table>
     <tr>
         <th>Listar todos os Vídeos</th>
@@ -40,7 +42,8 @@ O projeto tem o objetivo de construir um back-end para o front do site Aluraflix
     </tr>
 </table>
 
-- Semana 2: Criar nova tabela para categorias com relação de categoria 1:n vídeos; fazer rotas CRUD para as categorias; criar rota para listar vídeos por categoria; e criar rota com parâmetros de busca para os vídeos. ✅
+### Semana 2 ✅
+Criar nova tabela para categorias com relação de categoria 1:n vídeos; fazer rotas CRUD para as categorias; criar rota para listar vídeos por categoria; e criar rota com parâmetros de busca para os vídeos.
 
 <table>
     <tr>
@@ -75,7 +78,29 @@ O projeto tem o objetivo de construir um back-end para o front do site Aluraflix
     </tr>
 </table>
 
-- Semanas 3 e 4:
+### Semanas 3 e 4 ✅
+Criar funcionalidades de paginação, autenticação, rota para requisições sem autentticação e fazer o deploy da API.
+
+Para a autenticação, resolvi usar o Json Web Token (JWT), criado com login de um usuário. Para testar usar o `"username": "admin"` e a `"password":"parangaricotirimirruaru"`. Entendo que seria melhor uma criptografia da senha, mas escolhi pela simplicidade usar apenas a lib `jsonwebtoken` como autenticação.
+
+<table>
+    <tr>
+        <th>Paginação</th>
+        <th>Autenticação</th>
+    </tr>
+    <tr>
+        <td><img src="https://media.giphy.com/media/aLfWDHfKVm19xSiuFb/giphy.gif" alt="paginação"></td>
+        <td><img src="https://media.giphy.com/media/9br23mrTnZg3kXcmNu/giphy.gif" alt="autenticação"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Rota Free</th>
+    </tr>
+    <tr>
+        <td><img src="https://media.giphy.com/media/zuHK05Rw28lYrylvDS/giphy.gif" alt="rota free"></td>
+    </tr>
+</table>
 
 ## Para rodar o projeto
 - Faça o clone do repositório com `git clone https://github.com/Enyus/alurachallengefrontend5.git`
