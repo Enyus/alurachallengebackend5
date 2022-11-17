@@ -11,7 +11,7 @@
     "clean": "tsc --build --clean"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed.js"
   },
   "repository": {
     "type": "git",
