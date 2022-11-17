@@ -12,6 +12,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
+}
+
 model Categoria {
   id     Int    @id @default(autoincrement())
   titulo String

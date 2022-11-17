@@ -2,6 +2,7 @@ import express  from 'express';
 import cors from 'cors';
 import videoRouter from './routes/videoRouter';
 import categoriaRouter from './routes/categoriaRouter';
+import userRouter from './routes/userRouter';
 
 const app = express();
 app.use(express.json());
@@ -14,9 +15,10 @@ app.use(cors(
 ))
 app.set('view engine', 'ejs');
 
-app.use('/', (req, res) => {res.render('home')})
+app.use('/users', userRouter);
 app.use('/videos', videoRouter);
 app.use('/categorias', categoriaRouter);
+app.use('/', (req, res) => {res.render('home')})
 
 app.listen(3333, () => {
     console.log("App rodando em http://localhost:3333/")});

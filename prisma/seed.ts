@@ -1,5 +1,6 @@
 // Para rodar o seed, utilize o seguind comando no console: 'npx prisma db seed'
 
+import { allowedNodeEnvironmentFlags } from "process";
 import prisma from "../assets/prisma";
 
 async function main() {
@@ -491,7 +492,21 @@ async function main() {
     },
   });
 
-  console.log({ categoria1, categoria2, video1, video2, video3 });
+  const user1 = await prisma.user.upsert({
+    where: { id: 1 },
+    update: {
+      id: 1,
+      username: 'admin',
+      password: 'parangaricotirimirruaru',
+    },
+    create: {
+      id: 1,
+      username: 'admin',
+      password: 'parangaricotirimirruaru',
+    }
+  })
+
+  console.log({ categoria1, categoria2, video1, video2, video3, user1 });
 }
 
 main()

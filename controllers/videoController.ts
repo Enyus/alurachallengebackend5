@@ -186,6 +186,26 @@ const videoController = {
       return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
     }
   },
+
+  listFree: async (req: Request, res: Response) => {
+
+    try {
+      const videosFree = await prisma.video.findMany({
+        where: {
+          deletedAt: null,
+        },
+        include: {
+          categoria: true,
+        },
+        take: 5,
+      });
+
+      return res.status(202).json({ videosFree });
+    } catch (error) {
+      console.log(error);
+      return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
+    }
+  },
 };
 
 export default videoController;
