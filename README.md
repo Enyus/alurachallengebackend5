@@ -6,7 +6,7 @@ Este repositório guarda a minha versão do back-end do site Alura Flix, desenvo
 | -------------  | --- |
 | :sparkles: Nome        | **Alura Challenge Back-end 5 - Alura Flix**
 | :label: Tecnologias | NodeJs, Express, Prisma, SQLite, Hopscotch
-| :rocket: URL         | 
+| :rocket: URL         | https://aluraflix-front.vercel.app/
 
 <!-- Inserir imagem com a #vitrinedev ao final do link -->
 ![](https://i.imgur.com/4BTHvAB.png#vitrinedev)
