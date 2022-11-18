@@ -102,6 +102,11 @@ Para a autenticação, resolvi usar o Json Web Token (JWT), criado com login de 
     </tr>
 </table>
 
+### Extra - Integração
+Com muito custo (hahaha, eu rio que é melhor que chorar), consegui fazer a integração da API com o aluraflixFront, que pode ser observado (LIVE!) <a href="https://aluraflix-front.vercel.app/">AQUI</a>.
+
+<img src="https://i.imgur.com/zbBoxTA.png" alt="AluraFlix Front">
+
 ## Para rodar o projeto
 - Faça o clone do repositório com `git clone https://github.com/Enyus/alurachallengefrontend5.git`
 - Faça a instalação das dependências com `npm install`
