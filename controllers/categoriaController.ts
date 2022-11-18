@@ -166,6 +166,26 @@ const categoriaController = {
       return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
     }
   },
+
+  listVideosForApi: async (req: Request, res: Response) => {
+
+    try {
+      const videos = await prisma.video.findMany({
+        where: {
+          deletedAt: null,
+        },
+        include: {
+          categoria: true,
+        },
+      });
+
+      return res.status(202).json({ videos });
+
+    } catch (error) {
+      console.log(error);
+      return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
+    }
+  },
 };
 
 export default categoriaController;

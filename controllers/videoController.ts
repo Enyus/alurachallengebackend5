@@ -206,6 +206,39 @@ const videoController = {
       return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
     }
   },
+
+  addVideoForApi: async (req: Request, res: Response) => {
+    const { titulo, descricao, url } = req.body;
+    let { categoriaId } = req.body;
+
+    if (!validation(categoriaId)) {
+      categoriaId = 1;
+    } else {
+      categoriaId = Number(categoriaId);
+    }
+
+    if (!(validation(titulo) && validation(descricao) && validation(url))) {
+      return res
+        .status(412)
+        .send("Os dados enviados não passaram nos testes de validação");
+    }
+
+    try {
+      const videoAdd = await prisma.video.create({
+        data: {
+          titulo: titulo,
+          descricao: descricao,
+          url: url,
+          categoriaId: categoriaId,
+        },
+      });
+
+      return res.status(202).json(videoAdd);
+    } catch (error) {
+      console.log(error);
+      return res.status(404).send(`Ocorreu um problema. Erro: ${error}`);
+    }
+  },
 };
 
 export default videoController;
