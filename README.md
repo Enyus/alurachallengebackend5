@@ -1,6 +1,6 @@
 # Alura Challenge Back-end 5 - Alura Flix API (WIP)
 
-Este repositório guarda a minha versão do back-end do site Alura Flix, desenvolvido no Alura Challenge Back-End 5, entre 24/10 e XX/11/2022.
+Este repositório guarda a minha versão do back-end do site Alura Flix, desenvolvido no Alura Challenge Back-End 5, entre 24/10 e 22/11/2022.
 
 | :placard: Vitrine.Dev |     |
 | -------------  | --- |
