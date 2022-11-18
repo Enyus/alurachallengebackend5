@@ -237,6 +237,31 @@ var categoriaController = {
                 case 4: return [2 /*return*/];
             }
         });
+    }); },
+    listVideosForApi: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var videos, error_7;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, prisma_1["default"].video.findMany({
+                            where: {
+                                deletedAt: null
+                            },
+                            include: {
+                                categoria: true
+                            }
+                        })];
+                case 1:
+                    videos = _a.sent();
+                    return [2 /*return*/, res.status(202).json({ videos: videos })];
+                case 2:
+                    error_7 = _a.sent();
+                    console.log(error_7);
+                    return [2 /*return*/, res.status(404).send("Ocorreu um problema. Erro: ".concat(error_7))];
+                case 3: return [2 /*return*/];
+            }
+        });
     }); }
 };
 exports["default"] = categoriaController;

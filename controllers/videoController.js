@@ -267,6 +267,46 @@ var videoController = {
                 case 3: return [2 /*return*/];
             }
         });
+    }); },
+    addVideoForApi: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var _a, titulo, descricao, url, categoriaId, videoAdd, error_7;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = req.body, titulo = _a.titulo, descricao = _a.descricao, url = _a.url;
+                    categoriaId = req.body.categoriaId;
+                    if (!(0, validation_1["default"])(categoriaId)) {
+                        categoriaId = 1;
+                    }
+                    else {
+                        categoriaId = Number(categoriaId);
+                    }
+                    if (!((0, validation_1["default"])(titulo) && (0, validation_1["default"])(descricao) && (0, validation_1["default"])(url))) {
+                        return [2 /*return*/, res
+                                .status(412)
+                                .send("Os dados enviados não passaram nos testes de validação")];
+                    }
+                    _b.label = 1;
+                case 1:
+                    _b.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, prisma_1["default"].video.create({
+                            data: {
+                                titulo: titulo,
+                                descricao: descricao,
+                                url: url,
+                                categoriaId: categoriaId
+                            }
+                        })];
+                case 2:
+                    videoAdd = _b.sent();
+                    return [2 /*return*/, res.status(202).json(videoAdd)];
+                case 3:
+                    error_7 = _b.sent();
+                    console.log(error_7);
+                    return [2 /*return*/, res.status(404).send("Ocorreu um problema. Erro: ".concat(error_7))];
+                case 4: return [2 /*return*/];
+            }
+        });
     }); }
 };
 exports["default"] = videoController;
